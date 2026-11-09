@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>دودو ✨</title>
+<meta name="description" content="موقع دودو - شخصية مرحة ورائعة بتحب الفن والغناء والرسم والبيانو">
+<meta name="theme-color" content="#8b5cf6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%B9%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&family=Reem+Kufi:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#ff7eb6; --purple:#8b5cf6; --peach:#ffb48a; --cream:#fff7fb; --ink:#3b2a4d;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;line-height:1.8}
+section{padding:80px 20px;max-width:980px;margin:auto;position:relative;z-index:2}
+h2{font-family:'Reem Kufi',sans-serif;font-size:2.2rem;text-align:center;margin-bottom:12px;color:var(--purple)}
+.sub{text-align:center;opacity:.8;margin-bottom:40px}
+
+/* hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:linear-gradient(135deg,#ffd6e8,#e3d4ff 55%,#ffe2cf);position:relative;overflow:hidden;padding:20px}
+.hero h1{font-family:'Reem Kufi',sans-serif;font-size:clamp(4rem,16vw,9rem);
+  background:linear-gradient(90deg,var(--pink),var(--purple),var(--peach));-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:pop 1.2s cubic-bezier(.2,1.4,.4,1) both;line-height:1.2}
+.hero p{font-size:1.3rem;margin-top:10px;animation:fade 1.6s .6s both}
+.btn{display:inline-block;margin-top:30px;padding:12px 30px;border-radius:40px;background:var(--purple);color:#fff;text-decoration:none;font-weight:600;
+  box-shadow:0 8px 24px rgba(139,92,246,.35);transition:.25s;animation:fade 1.6s 1s both}
+.btn:hover{transform:translateY(-3px) scale(1.04)}
+.float{position:absolute;font-size:2rem;opacity:.7;animation:rise linear infinite;pointer-events:none;user-select:none}
+@keyframes rise{from{transform:translateY(110vh) rotate(0)}to{transform:translateY(-20vh) rotate(360deg)}}
+@keyframes pop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes fade{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+
+/* about */
+.about-box{background:#fff;border-radius:28px;padding:36px;box-shadow:0 12px 40px rgba(139,92,246,.12);font-size:1.15rem;text-align:center}
+.about-box b{color:var(--pink)}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px}
+.card{background:#fff;border-radius:24px;padding:30px 20px;text-align:center;box-shadow:0 10px 30px rgba(255,126,182,.18);
+  transition:.3s;opacity:0;transform:translateY(30px)}
+.card.show{opacity:1;transform:none}
+.card:hover{transform:translateY(-8px) rotate(-1deg)}
+.card .ic{font-size:3rem}
+.card h3{font-family:'Reem Kufi',sans-serif;color:var(--purple);margin:6px 0}
+
+/* piano */
+.piano-wrap{background:linear-gradient(160deg,#2a1f3d,#3d2a5c);border-radius:28px;padding:30px 14px;text-align:center}
+.piano-wrap h2{color:#fff}
+.piano-wrap .sub{color:#e9ddff}
+.pctl{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.pctl button{font-family:inherit;font-size:.95rem;border:none;border-radius:30px;padding:8px 16px;cursor:pointer;background:rgba(255,255,255,.14);color:#fff;transition:.2s}
+.pctl button:hover{background:rgba(255,255,255,.28)}
+.pctl button.act{background:var(--pink)}
+.pctl button:disabled{opacity:.4;cursor:not-allowed}
+.keys{position:relative;direction:ltr;display:flex;height:230px;max-width:900px;margin:auto;touch-action:none;user-select:none;
+  border-top:10px solid #1a1226;border-radius:12px 12px 6px 6px;box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.key{flex:1;background:linear-gradient(#fff,#f1ecf7);border:1px solid #b9aed0;border-radius:0 0 10px 10px;cursor:pointer;position:relative;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:8px;color:#8a7da3;transition:background .08s,transform .08s}
+.key.on{background:linear-gradient(#ffd6e8,#ff9cc8);transform:translateY(2px)}
+.key .nm{font-weight:700;font-size:.85rem}
+.key .hint{font-size:.7rem;opacity:.6}
+.black{position:absolute;top:0;height:60%;background:linear-gradient(#3a3a3a,#000);border-radius:0 0 8px 8px;cursor:pointer;z-index:3;
+  display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;color:#bbb;font-size:.65rem;box-shadow:0 4px 6px rgba(0,0,0,.5);transition:background .08s}
+.black.on{background:linear-gradient(#a78bfa,#8b5cf6)}
+.keys.nolabels .nm,.keys.nolabels .hint{display:none}
+@media(max-width:600px){.keys{height:190px}.key .hint,.black .hint{display:none}.key .nm{font-size:.65rem}}
+
+/* draw */
+canvas{background:#fff;border-radius:24px;box-shadow:0 10px 30px rgba(139,92,246,.2);width:100%;max-width:700px;display:block;margin:auto;touch-action:none;cursor:crosshair}
+.tools{display:flex;justify-content:center;gap:10px;margin:16px 0;flex-wrap:wrap}
+.tools button{width:34px;height:34px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.25);cursor:pointer}
+.tools .txt{width:auto;border-radius:20px;padding:0 16px;background:var(--purple);color:#fff;font-family:inherit;border:none}
+
+/* recorder */
+.rec{background:linear-gradient(135deg,#fff,#f3eaff);border-radius:28px;padding:36px 20px;text-align:center;box-shadow:0 12px 40px rgba(139,92,246,.18)}
+.mic{width:110px;height:110px;border-radius:50%;border:none;font-size:3rem;cursor:pointer;color:#fff;
+  background:linear-gradient(135deg,var(--pink),var(--purple));box-shadow:0 10px 30px rgba(139,92,246,.4);transition:.25s}
+.mic:hover{transform:scale(1.06)}
+.mic.live{animation:pulse 1s infinite;background:linear-gradient(135deg,#ff4d6d,#ff7eb6)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,77,109,.6)}100%{box-shadow:0 0 0 35px rgba(255,77,109,0)}}
+#timer{font-size:1.6rem;font-weight:800;margin:14px 0 4px;color:var(--purple);font-variant-numeric:tabular-nums}
+#recMsg{min-height:1.6em;opacity:.8}
+#recList{margin-top:24px;display:grid;gap:14px;max-width:520px;margin-inline:auto}
+.take{background:#fff;border-radius:20px;padding:14px 16px;box-shadow:0 6px 18px rgba(255,126,182,.2);text-align:right}
+.take audio{width:100%;margin:8px 0}
+.take a{color:var(--purple);font-weight:600;text-decoration:none}
+.take .del{background:none;border:none;color:#ff4d6d;cursor:pointer;font-family:inherit;font-size:1rem;margin-inline-start:14px}
+
+/* typed message */
+.typed{font-family:'Reem Kufi',sans-serif;font-size:clamp(1.7rem,5.5vw,2.8rem);line-height:1.6;min-height:3.4em;margin-top:10px;
+  background:linear-gradient(90deg,var(--pink),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+.typed::after{content:'|';color:var(--pink);-webkit-text-fill-color:var(--pink);animation:blink .8s steps(1) infinite;margin-inline-start:2px}
+.typed.done::after{display:none}
+@keyframes blink{50%{opacity:0}}
+.letter{position:relative;overflow:hidden}
+.hrt{position:absolute;bottom:-30px;font-size:1.6rem;pointer-events:none;animation:hup 3.2s ease-out forwards}
+@keyframes hup{from{transform:translateY(0) scale(.6);opacity:1}to{transform:translateY(-340px) scale(1.2) rotate(20deg);opacity:0}}
+
+/* letter */
+.letter{background:linear-gradient(135deg,#fff,#fff0f7);border-radius:28px;padding:40px 30px;text-align:center;box-shadow:0 12px 40px rgba(255,126,182,.22);font-size:1.2rem}
+.letter .heart{font-size:2.5rem;animation:beat 1.2s infinite}
+@keyframes beat{50%{transform:scale(1.25)}}
+footer{text-align:center;padding:40px;opacity:.7}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <h1>دودو</h1>
+  <p>الشخصية المرحة اللي بتنوّر أي مكان 🌸</p>
+  <a class="btn" href="#about">شوفي نفسك ✨</a>
+</header>
+
+<section id="about">
+  <h2>مين هي دودو؟</h2>
+  <p class="sub">حكاية صغيرة عن بنت مش عادية</p>
+  <div class="about-box">
+    دودو شخصية <b>مرحة</b> و<b>رائعة</b>، ضحكتها بتسبق كلامها، ووجودها بيحوّل أي يوم عادي ليوم حلو.<br>
+    بتحب الفن بكل أشكاله، وكل حاجة بتلمسها بتطلع فيها لمسة من روحها. 🎨
+  </div>
+</section>
+
+<section id="passions">
+  <h2>اللي بتحبه دودو</h2>
+  <p class="sub">أربع حاجات بتخلي عالمها ملوّن</p>
+  <div class="cards">
+    <div class="card"><div class="ic">🎨</div><h3>الفن</h3><p>بتشوف الجمال في كل تفصيلة.</p></div>
+    <div class="card"><div class="ic">🎤</div><h3>الغناء</h3><p>صوتها بيدخل القلب من غير استئذان.</p></div>
+    <div class="card"><div class="ic">🖌️</div><h3>الرسم</h3><p>بتحوّل الخيال لألوان على الورق.</p></div>
+    <div class="card"><div class="ic">🎹</div><h3>البيانو</h3><p>أصابعها بتحكي حكايات من غير كلام.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="piano-wrap">
+    <h2>🎹 اعزفي يا دودو</h2>
+    <p class="sub">اضغطي على المفاتيح، أو اسحبي صباعك عليها، أو اعزفي من الكيبورد</p>
+    <div class="pctl">
+      <button id="bLabels" class="act">🔤 أسماء النوتات</button>
+      <button id="bSus" class="act">🌙 صدى طويل</button>
+      <button id="bDemo">🎼 لحن تجريبي</button>
+      <button id="bRec">⏺️ سجّلي لحنك</button>
+      <button id="bPlay" disabled>▶️ شغّلي لحنك</button>
+    </div>
+    <div class="keys" id="keys"></div>
+  </div>
+</section>
+
+<section id="sing">
+  <h2>🎤 غنّي يا دودو</h2>
+  <p class="sub">اضغطي على المايك وسجلي صوتك، وبعدين اسمعيه أو نزّليه</p>
+  <div class="rec">
+    <button class="mic" id="mic" aria-label="تسجيل">🎤</button>
+    <div id="timer">00:00</div>
+    <p id="recMsg">اضغطي للبدء</p>
+    <div id="recList"></div>
+  </div>
+</section>
+
+<section>
+  <h2>🖌️ لوحتك</h2>
+  <p class="sub">ارسمي اللي في بالك</p>
+  <canvas id="board" width="700" height="400"></canvas>
+  <div class="tools" id="tools"></div>
+</section>
+
+<section>
+  <div class="letter" id="letter">
+    <div class="heart">💖</div>
+    <p class="typed" id="typed" data-text="يومي أصبح أحلى بعد معرفتك يا دودو 🌷"></p>
+    <!-- اكتب هنا رسالتك الشخصية لها: غيّر النص في data-text فوق -->
+  </div>
+</section>
+
+<footer>صُنع بحب 💜 لدودو</footer>
+
+<script>
+// floating emojis
+const hero=document.querySelector('.hero');
+['🎵','🎨','🎹','✨','🌸','🎤','🖌️','💜'].forEach((e,i)=>{
+  for(let k=0;k<2;k++){
+    const s=document.createElement('span');s.className='float';s.textContent=e;
+    s.style.left=Math.random()*95+'%';
+    s.style.animationDuration=(9+Math.random()*9)+'s';
+    s.style.animationDelay=(-Math.random()*12)+'s';
+    hero.appendChild(s);
+  }
+});
+
+// reveal cards
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting)x.target.classList.add('show')}),{threshold:.2});
+document.querySelectorAll('.card').forEach((c,i)=>{c.style.transitionDelay=(i*.12)+'s';io.observe(c)});
+
+// piano
+(function(){
+  const keysEl=document.getElementById('keys');
+  const solfege=['دو','ري','مي','فا','صول','لا','سي'];
+  const whiteSemi=[0,2,4,5,7,9,11];
+  const blackAfter={0:1,1:3,3:6,4:8,5:10};
+  const lowerW='zxcvbnm',upperW='qwertyu';
+  const lowerB={0:'s',1:'d',3:'g',4:'h',5:'j'};
+  const upperB={0:'2',1:'3',3:'5',4:'6',5:'7'};
+  const W=100/14;
+  const els={},keyMap={};
+  const codeOf=ch=>/\d/.test(ch)?'Digit'+ch:'Key'+ch.toUpperCase();
+  for(let o=0;o<2;o++){
+    for(let j=0;j<7;j++){
+      const m=60+12*o+whiteSemi[j];
+      const d=document.createElement('div');d.className='key';d.dataset.m=m;
+      const h=(o?upperW:lowerW)[j];
+      d.innerHTML='<span class="nm">'+solfege[j]+'</span><span class="hint">'+h.toUpperCase()+'</span>';
+      keysEl.appendChild(d);els[m]=d;keyMap[codeOf(h)]=m;
+    }
+  }
+  for(let o=0;o<2;o++){
+    for(let j=0;j<7;j++){
+      if(!(j in blackAfter))continue;
+      const m=60+12*o+blackAfter[j];
+      const d=document.createElement('div');d.className='black';d.dataset.m=m;
+      d.style.width=(W*0.6)+'%';
+      d.style.left=((o*7+j+1)*W-W*0.3)+'%';
+      const h=(o?upperB:lowerB)[j];
+      d.innerHTML='<span class="hint">'+h.toUpperCase()+'</span>';
+      keysEl.appendChild(d);els[m]=d;keyMap[codeOf(h)]=m;
+    }
+  }
+
+  let a=null,master=null,sustain=true;
+  function audio(){
+    if(!a){
+      a=new (window.AudioContext||window.webkitAudioContext)();
+      master=a.createGain();master.gain.value=.7;
+      const comp=a.createDynamicsCompressor();
+      master.connect(comp);comp.connect(a.destination);
+    }
+    if(a.state==='suspended')a.resume();
+    return a;
+  }
+  function tone(m){
+    try{
+      const ac=audio(),now=ac.currentTime,f=440*Math.pow(2,(m-69)/12);
+      const dur=sustain?3.2:1.4;
+      const out=ac.createGain();
+      out.gain.setValueAtTime(0.0001,now);
+      out.gain.linearRampToValueAtTime(.5,now+.008);
+      out.gain.exponentialRampToValueAtTime(.18,now+.14);
+      out.gain.exponentialRampToValueAtTime(.0008,now+dur);
+      const lp=ac.createBiquadFilter();lp.type='lowpass';
+      lp.frequency.setValueAtTime(Math.min(f*8,9000),now);
+      lp.frequency.exponentialRampToValueAtTime(Math.max(f*2,600),now+dur);
+      [[1,'sine',1],[2,'sine',.45],[3,'triangle',.22],[4,'sine',.1]].forEach(([k,t,g])=>{
+        const o=ac.createOscillator(),og=ac.createGain();
+        o.type=t;o.frequency.value=f*k;og.gain.value=g;
+        o.connect(og);og.connect(lp);o.start(now);o.stop(now+dur+.05);
+      });
+      lp.connect(out);out.connect(master);
+    }catch(e){}
+  }
+
+  let recording=false,take=[],t0=0,saved=[],timers=[];
+  function press(m){
+    const el=els[m];if(!el)return;
+    tone(m);
+    el.classList.add('on');setTimeout(()=>el.classList.remove('on'),sustain?260:160);
+    if(recording)take.push([m,performance.now()-t0]);
+  }
+
+  let down=false,last=null;
+  keysEl.addEventListener('pointerdown',e=>{
+    const k=e.target.closest('[data-m]');if(!k)return;
+    e.preventDefault();down=true;last=k;press(+k.dataset.m);
+  });
+  keysEl.addEventListener('pointermove',e=>{
+    if(!down)return;
+    const el=document.elementFromPoint(e.clientX,e.clientY);
+    const k=el&&el.closest?el.closest('[data-m]'):null;
+    if(k&&keysEl.contains(k)&&k!==last){last=k;press(+k.dataset.m)}
+  });
+  const up=()=>{down=false;last=null};
+  addEventListener('pointerup',up);addEventListener('pointercancel',up);
+
+  addEventListener('keydown',e=>{
+    if(e.ctrlKey||e.metaKey||e.altKey||e.repeat)return;
+    const m=keyMap[e.code];
+    if(m!=null)press(m);
+  });
+
+  const $=id=>document.getElementById(id);
+  $('bLabels').onclick=e=>{keysEl.classList.toggle('nolabels');e.currentTarget.classList.toggle('act')};
+  $('bSus').onclick=e=>{sustain=!sustain;e.currentTarget.classList.toggle('act',sustain)};
+
+  function stopPlayback(){timers.forEach(clearTimeout);timers=[]}
+  function playSeq(seq){stopPlayback();seq.forEach(([m,t])=>timers.push(setTimeout(()=>press(m),t)))}
+
+  $('bDemo').onclick=()=>{
+    const whiteMidi=i=>60+12*Math.floor(i/7)+whiteSemi[i%7];
+    const ph=[[0,0,4,4,5,5,4],[3,3,2,2,1,1,0],[4,4,3,3,2,2,1],[4,4,3,3,2,2,1],[0,0,4,4,5,5,4],[3,3,2,2,1,1,0]];
+    let t=0;const seq=[];
+    ph.forEach(p=>p.forEach((w,i)=>{seq.push([whiteMidi(w),t]);t+=(i===6?900:450)}));
+    playSeq(seq);
+  };
+  const bRec=$('bRec'),bPlay=$('bPlay');
+  bRec.onclick=()=>{
+    if(!recording){
+      stopPlayback();take=[];t0=performance.now();recording=true;
+      bRec.textContent='⏹️ وقّفي التسجيل';bRec.classList.add('act');bPlay.disabled=true;
+    }else{
+      recording=false;
+      bRec.textContent='⏺️ سجّلي لحنك';bRec.classList.remove('act');
+      if(take.length){const off=take[0][1];saved=take.map(([m,t])=>[m,t-off])}
+      bPlay.disabled=!saved.length;
+    }
+  };
+  bPlay.onclick=()=>playSeq(saved);
+})();
+
+// voice recorder
+(function(){
+  const mic=document.getElementById('mic'),timerEl=document.getElementById('timer'),
+        msg=document.getElementById('recMsg'),list=document.getElementById('recList');
+  let rec=null,chunks=[],stream=null,t0=0,tick=null,n=0;
+  const fmt=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+
+  async function start(){
+    if(!navigator.mediaDevices||!window.MediaRecorder){
+      msg.textContent='المتصفح ده مش بيدعم التسجيل، جرّبي Chrome أو Safari حديث 🙏';return;
+    }
+    try{
+      stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    }catch(e){
+      msg.textContent='لازم تسمحي للمتصفح باستخدام المايك عشان نسجّل 🎙️';return;
+    }
+    chunks=[];rec=new MediaRecorder(stream);
+    rec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
+    rec.onstop=()=>{
+      stream.getTracks().forEach(t=>t.stop());
+      const type=rec.mimeType||'audio/webm';
+      const blob=new Blob(chunks,{type});
+      addTake(blob,type);
+    };
+    rec.start();t0=Date.now();
+    mic.classList.add('live');mic.textContent='⏹️';msg.textContent='بنسجّل... غنّي براحتك 🎶';
+    tick=setInterval(()=>timerEl.textContent=fmt(Math.floor((Date.now()-t0)/1000)),250);
+  }
+  function stop(){
+    if(rec&&rec.state!=='inactive')rec.stop();
+    clearInterval(tick);mic.classList.remove('live');mic.textContent='🎤';
+    msg.textContent='حلو أوي! تقدري تسجّلي تاني 💜';
+  }
+  function addTake(blob,type){
+    n++;
+    const url=URL.createObjectURL(blob);
+    const ext=type.includes('mp4')?'m4a':type.includes('ogg')?'ogg':'webm';
+    const d=document.createElement('div');d.className='take';
+    d.innerHTML='<b>🎵 تسجيل رقم '+n+'</b><audio controls src="'+url+'"></audio>'+
+      '<a download="dodo-'+n+'.'+ext+'" href="'+url+'">⬇️ تنزيل</a>'+
+      '<button class="del">🗑️ حذف</button>';
+    d.querySelector('.del').onclick=()=>{URL.revokeObjectURL(url);d.remove()};
+    list.prepend(d);
+  }
+  mic.addEventListener('click',()=>{ (rec&&rec.state==='recording')?stop():start(); });
+})();
+
+// typed message
+(function(){
+  const box=document.getElementById('letter'),el=document.getElementById('typed');
+  const text=el.dataset.text;
+  function hearts(){
+    for(let i=0;i<18;i++){
+      const h=document.createElement('span');h.className='hrt';
+      h.textContent=['💖','💜','💗','✨','🌸'][i%5];
+      h.style.left=(Math.random()*92+2)+'%';
+      h.style.animationDelay=(Math.random()*1.6)+'s';
+      box.appendChild(h);setTimeout(()=>h.remove(),5200);
+    }
+  }
+  function type(){
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=text;el.classList.add('done');return}
+    let i=0;
+    const t=setInterval(()=>{
+      el.textContent=text.slice(0,++i);
+      if(i>=text.length){clearInterval(t);el.classList.add('done');hearts()}
+    },95);
+  }
+  const o=new IntersectionObserver(es=>{
+    if(es[0].isIntersecting){o.disconnect();setTimeout(type,500)}
+  },{threshold:.6});
+  o.observe(box);
+})();
+
+// drawing
+const cv=document.getElementById('board'),c=cv.getContext('2d');
+c.lineCap='round';c.lineJoin='round';c.lineWidth=5;let color='#8b5cf6',drawing=false;
+function pos(e){const r=cv.getBoundingClientRect();return[(e.clientX-r.left)*cv.width/r.width,(e.clientY-r.top)*cv.height/r.height]}
+cv.addEventListener('pointerdown',e=>{drawing=true;const[x,y]=pos(e);c.beginPath();c.moveTo(x,y);c.strokeStyle=color;c.lineTo(x+.1,y);c.stroke()});
+cv.addEventListener('pointermove',e=>{if(!drawing)return;const[x,y]=pos(e);c.lineTo(x,y);c.stroke()});
+['pointerup','pointerleave'].forEach(t=>cv.addEventListener(t,()=>drawing=false));
+const tools=document.getElementById('tools');
+['#8b5cf6','#ff7eb6','#ffb48a','#34d399','#38bdf8','#3b2a4d'].forEach(col=>{
+  const b=document.createElement('button');b.style.background=col;b.onclick=()=>color=col;tools.appendChild(b);
+});
+const clr=document.createElement('button');clr.className='txt';clr.textContent='مسح 🧽';
+clr.onclick=()=>c.clearRect(0,0,cv.width,cv.height);tools.appendChild(clr);
+</script>
+</body>
+</html>
